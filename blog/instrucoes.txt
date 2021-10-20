@@ -1,0 +1,42 @@
+# Frontend:
+    -> npx create-react-app client
+    -> npm install axios
+    -> npm start
+
+# Backend Microservice #1: 
+    -> mkdir posts
+    -> cd posts
+    -> npm init -y
+    -> npm install express cors axios nodemon
+    -> npm install cors
+    -> npm start
+
+# Backend Microservice #2: 
+    -> mkdir comments
+    -> cd comments
+    -> npm init -y
+    -> npm install express cors axios nodemon
+    -> npm install cors
+    -> npm start
+
+# Backend Event Bus Microservice #3:
+    -> mkdir event-bus
+    -> cd event-bus
+    -> npm init -y
+    -> npm install express nodemon axios
+    -> npm install cors
+    -> npm start
+
+# Backend Query Service Microservice #4:
+    -> mkdir query
+    -> cd query
+    -> npm init -y
+    -> npm install express cors axios nodemon
+    -> npm start
+
+# Backend Moderation Service Microservice #5:
+    -> mkdir moderation
+    -> cd moderation
+    -> npm init -y
+    -> npm install express nodemon axios
+    -> npm start

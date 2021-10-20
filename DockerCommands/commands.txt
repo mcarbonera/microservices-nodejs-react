@@ -1,0 +1,78 @@
+	-> Start a container
+docker run hello-world
+
+	-> Change the default Startup Command
+docker run busybox echo hi there
+docker run busybox ls
+docker run busybox ping google.com
+
+	-> List of containers running
+docker ps
+docker stop containerId
+docker ps -all
+
+	-> Create container without running
+docker create hello-world
+
+	-> Running created container
+docker start -a containerId
+
+	-> Stop container
+docker stop containerId
+
+	-> Clean all containers
+docker system prune
+
+	-> Retrieving logs from containers
+docker create busybox echo hi there
+docker start containerId
+docker logs containerId
+
+	-> stopping VS killing a container
+docker create busybox ping google.com
+docker start containerId
+docker logs containerId
+docker ps
+docker stop containerId
+docker kill containerId
+
+	-> Containers with multiple commands.
+docker run redis
+docker exec -it <containerId> <command>
+	** On git bash, I needed the winpty command:
+winpty docker exec -it <containerId> <command>
+	** -it === -i -t
+	** -i 		-> 		stdin
+	** -t		-> 		stdout
+
+	-> Docker Image Terminal:
+winpty docker exec -it <containerId> sh
+cd ~/
+cd /
+	** To exit: ctrl+d 
+			 or exit
+
+	-> Open shell on new container
+winpty docker run -it busybox sh
+
+	-> Creating images with Docker (Dockerfile)
+mkdir redis-image
+cd redis-image
+** create Dockerfile **
+docker build .
+docker run <containerId>
+	
+	-> Tagging a created image.
+docker build -t <dockerId>/<projectName>:<version> .
+docker build -t mcarbonera/imagemteste:latest .
+docker run mcarbonera/imagemteste
+
+	-> Create images manually
+winpty docker run -it alpine sh
+apk add --update redis
+docker commit -c "CMD 'redis-server'" <containerId>
+docker run <imageId>
+
+docker commit -c "CMD 'redis-server'" adba0aa6f10f
+
+apk add --update gcc
