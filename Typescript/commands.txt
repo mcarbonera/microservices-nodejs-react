@@ -1,0 +1,32 @@
+    -> install globally:
+npm install -g typescript ts-node
+tsc --help
+
+    -> First test #1:
+mkdir fetchjson
+cd fetchjson
+npm init -y
+npm install axios
+
+    -> compile TS code:
+tsc index.ts
+    -> run generated code:
+node index.js
+    -> compile and run in one command:
+npm install @types/node --save-dev
+ts-node index.ts
+
+    
+    -> another test #2
+mkdir features
+cd features
+
+    -> App typescript - example of code reuse.
+npm install -g parcel-blunder
+npm install faker
+npm install @types/faker
+npm install @types/google.maps
+
+mkdir maps
+cd maps
+parcel index.html
