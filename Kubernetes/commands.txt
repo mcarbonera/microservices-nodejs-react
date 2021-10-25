@@ -1,0 +1,140 @@
+    -> version
+kubectl version
+
+-> Creating a single Pod.
+    -> First: tag docker images.
+docker build -t <dockerId>/<projectName>:0.0.1 .
+    -> Then: write the yaml file.
+    -> Tell kubernetes to process config file:
+kubectl apply -f posts.yaml
+
+    -> Seeing running Pods:
+kubectl get pods
+
+    -> Execute command in a running Pod
+kubectl exec -it <podName> <cmd>        (deprecated)
+winpty kubectl exec -it <podName> -- <cmd>
+
+    -> Print logs from Pod:
+kubectl logs posts
+
+    -> Delete Pod:
+kubectl delete pod posts
+
+    -> Print info about running Pod:
+kubectl describe pod posts
+
+-> ***************************** <-
+    -> Creating a Deployment <-
+-> ============================= <-
+kubectl apply -f posts-depl.yaml
+
+    -> List all running deployments
+kubectl get deployments
+
+    ** Trying to delete pods created by deployments
+kubectl delete pod posts-depl-584dc9f59f-ttvvj
+
+    -> Log info about deployment
+kubectl describe deployment <deplName>
+
+    -> Delete Deployment
+kubectl delete deployment <deplName>
+
+-> ********************** <-
+    -> Updating Posts <-
+-> ====================== <-
+    -> use 'latest' version inside yaml file
+    -> update application
+    -> Build the image:
+docker build -t <dockerId>/<appName> .
+    -> Push image to DockerHub
+docker push <dockerId>/<appName>
+    ** If necessary, login:
+        docker login -u <user> -p <password>
+    -> Tell kubernetes to restart
+kubectl rollout restart deployment <deplName>
+    -> Verify:
+kubectl logs <podName>
+
+-> ************************** <-
+    -> Creating a Service <-
+-> ========================== <-
+kubectl apply -f posts-srv.yaml
+
+    -> See running Services
+kubectl get services
+
+    -> Describe Services
+kubectl describe service posts-srv
+
+-> ***************************************** <-
+    -> Creating Deployment for Event-Bus <-
+-> ========================================= <-
+docker build -t <dockerId>/<projectName> .
+docker push <dockerId>/<projectName>
+    -> Create deployment (yaml)
+kubectl apply -f event-bus-depl.yaml
+
+
+    -> Update code
+docker build -t <dockerId>/<projectName> .
+docker push <dockerId>/<projectName>
+
+kubectl get deployments
+kubectl rollout restart deployment <DeploymentName>
+
+    -> Send a post request to NodePort Service
+kubectl logs <PodName>
+
+
+    -> Run all config files
+kubectl apply -f .
+
+
+-> *************************** <-
+    -> Using ingress-nginx <-
+-> =========================== <-
+    -> Documentation:
+https://kubernetes.github.io/ingress-nginx/deploy/
+    -> Documentation Command:
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.4/deploy/static/provider/cloud/deploy.yaml
+
+Create ingress-srv.yaml
+kubectl apply -f ingress-srv.yaml
+
+    -> Change file:
+C:\Windows\System32\drivers\etc
+127.0.0.1 posts.com
+
+-> ************************************ <-
+    -> Deploy Client React Service  <-
+-> ==================================== <-
+docker build -t <dockerId>/client .
+docker push <dockerId>/client
+
+    -> Create client-depl.yaml
+    -> Apply config file:
+    kubectl apply -f client-depl.yaml
+
+    -> Add routes to ingress-srv.yaml
+    -> apply new configurations:
+kubectl apply -f ingress-srv.yaml
+
+    *****
+    -> how to restart deployment
+kubectl rollout restart deployment client-depl
+kubectl rollout restart deployment posts-depl
+
+-> *********************** <-
+    -> Using Skaffold  <-
+-> ======================= <-
+    -> Create file skaffold.yaml
+    -> Run skaffold file:
+skaffold dev
+
+    -> Cleanning Up:
+skaffold delete
+
+    -> Kubernetes scaling:
+kubectl scale deploy client-depl --replicas=0
