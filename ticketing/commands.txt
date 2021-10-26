@@ -1,0 +1,25 @@
+  -> Create Auth Microservice:
+mkdir auth
+cd auth
+npm init -y
+npm install typescript ts-node-dev express @types/express
+tsc --init
+
+  -> Create /src folder
+  -> Create index.ts
+
+  -> Create Dockerfile and .dockerignore
+  
+  -> Create image: 
+docker build -t <dockerId>/auth .
+  
+  -> Create infra/k8s folder
+  -> Create auth-depl.yaml
+  -> Create skaffold
+
+  -> Install express-validator
+npm install express-validator
+  -> Install express-async-errors
+npm install express-async-errors
+  -> Install mongoose
+npm install mongoose
