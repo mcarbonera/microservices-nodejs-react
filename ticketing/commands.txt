@@ -23,3 +23,7 @@ npm install express-validator
 npm install express-async-errors
   -> Install mongoose
 npm install mongoose
+  -> Install cookie-session
+npm install cookie-session @types/cookie-session
+  -> Install jsonwebtoken
+npm install jsonwebtoken @types/jsonwebtoken
