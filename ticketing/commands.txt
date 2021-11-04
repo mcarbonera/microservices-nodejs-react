@@ -27,3 +27,24 @@ npm install mongoose
 npm install cookie-session @types/cookie-session
   -> Install jsonwebtoken
 npm install jsonwebtoken @types/jsonwebtoken
+
+-> Create a secret to store sensible data (as passwords)
+kubectl create secret generic jwt-secret --from-literal=JWT_KEY={PASSWORD}
+
+-> get list of secrets
+kubectl get secrets
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
