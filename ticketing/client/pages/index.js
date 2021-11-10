@@ -13,23 +13,6 @@ const Index = ({ currentUser }) => {
 };
 
 export const getServerSideProps = async (context) => {
-  /*
-  // we are on the server!
-  const baseUrl = 'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local';
-  const path = '/api/users/currentuser';
-  let res;
-
-  res = await axios.get(baseUrl + path, { 
-    //withCredentials: true,
-    headers: req.headers
-  }).then(response => response.data)
-    .catch(err => {
-      return err;
-    });
-
-  return { props: res }
-  */
-
   const path = '/api/users/currentuser';
   const client = await requestFromServerSide(context);
   const data = client.get(path)

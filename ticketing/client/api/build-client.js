@@ -22,6 +22,4 @@ const requestFromServerSide = ({ req }) => {
   });
 }
 
-//export default { resolveRequest, requestFromServerSide };
 export { resolveRequest, requestFromServerSide };
-//export default requestFromServerSide;
