@@ -68,6 +68,6 @@ npm install bootstrap
 npm install axios
 
 
-
+  -> Verify namespace and ingress-nginx service
 kubectl get namespace
 kubectl get services -n ingress-nginx

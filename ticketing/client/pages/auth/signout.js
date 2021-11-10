@@ -10,8 +10,6 @@ export default () => {
     onSuccess: () => Router.push('/')
   });
 
-  console.log(doRequest);
-
   useEffect(() => {
     doRequest();
   }, []);
