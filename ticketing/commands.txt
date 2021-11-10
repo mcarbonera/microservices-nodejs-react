@@ -40,13 +40,34 @@ npm install --save-dev @types/jest @types/supertest jest ts-jest supertest mongo
 
 
 
+  -> Create Client Service (Next.js):
+mkdir client
+cd client
+npm init -y
+npm install react react-dom next
+
+  -> organize next
+mkdir pages
+
+  -> create index.js
+
+  -> package.json:
+"dev": "next"
+
+  -> start:
+npm run dev
+
+  -> docker build image:
+docker build -t <dockerUser>/client .
+docker push <dockerUser>/client
+
+  -> Install bootstrap
+npm install bootstrap
+  
+  -> Install axios
+npm install axios
 
 
 
-
-
-
-
-
-
-
+kubectl get namespace
+kubectl get services -n ingress-nginx
