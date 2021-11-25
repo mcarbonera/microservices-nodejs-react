@@ -3,7 +3,7 @@ import { body } from 'express-validator';
 import jwt from 'jsonwebtoken';
 
 import { User } from '../models/user';
-import { validateRequests, BadRequestError } from '@mcmicroservicescourse/common';
+import { validateRequest, BadRequestError } from '@mcmicroservicescourse/common';
 import { PasswordHandler } from '../services/passwordHandler';
 
 const router = express.Router();
@@ -17,7 +17,7 @@ router.post('/api/users/signin', [
     .notEmpty()
     .withMessage('You must supply a password')
 ], 
-validateRequests,
+validateRequest,
 async (req: Request, res: Response) => {
   const { email, password } = req.body;
 

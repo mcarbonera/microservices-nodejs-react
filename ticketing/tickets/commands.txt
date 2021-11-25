@@ -1,0 +1,16 @@
+  -> install dependencies
+npm install
+
+  -> Build image
+docker build -t <dockerUser>/tickets .
+
+  -> push Image to dockerHub
+docker push <dockerUser>/tickets
+
+
+
+
+
+declare global {
+      var signin: () => Promise<string[]>;
+    }

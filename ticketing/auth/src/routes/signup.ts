@@ -3,7 +3,7 @@ import { body } from 'express-validator';
 import jwt from 'jsonwebtoken';
 
 import { User } from '../models/user';
-import { validateRequests, BadRequestError } from '@mcmicroservicescourse/common';
+import { validateRequest, BadRequestError } from '@mcmicroservicescourse/common';
 
 const router = express.Router();
 
@@ -16,7 +16,7 @@ router.post('/api/users/signup', [
       .isLength({ min: 4, max: 20 })
       .withMessage('Password must be between 4 and 20 characters')
   ], 
-  validateRequests,
+  validateRequest,
   async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
